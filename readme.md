@@ -33,8 +33,14 @@ Some further assumptions and self-imposed restrictions. If you find yourself nee
 # curl
 $ curl -L http://bit.ly/vaprobash > Vagrantfile
 
+# curl to php5.3 
+$ curl -L http://bit.ly/VaprobashPHP53 > Vagrantfile
+
 # wget
 $ wget -O Vagrantfile http://bit.ly/vaprobash
+
+# wget
+$ wget -O Vagrantfile http://bit.ly/VaprobashPHP53
 ```
 
 > The `bit.ly` link will always point to the master branch version of the Vagrantfile.
