@@ -44,9 +44,59 @@ else
     sudo apt-key update
     sudo apt-get update
 
-    # Install PHP
+# Install PHP
     # -qq implies -y --force-yes
-    sudo apt-get install -qq php5-cli php5-fpm php5-mysql php5-pgsql php5-sqlite php5-curl php5-gd php5-gmp php5-mcrypt php5-memcached php5-imagick php5-intl php5-xdebug
+    if [ $PHP_VERSION == "5.3" ]; then
+        echo ">>>>>> Dependencies to PHP $PHP_VERSION"
+        sudo apt-get -qq install synaptic libxml2-dev libcurl4-openssl-dev pkg-config. libpng-dev libt1-dev libmcrypt-dev libmysqlclient-dev libjpeg-dev libpcre3 libpcre3-dev libbz2-dev libminiupnpc-dev libgdbm-dev libdb-dev libgd2-xpm-dev libgmp-dev unixodbc-dev freetds-dev libpq-dev libpspell-dev libsnmp-dev libtidy-dev  libxslt-dev bison re2c php-pear
+
+        # Fix to freetype.h
+        echo ">>>>>> Link to freetype"
+        sudo mkdir -p /usr/include/freetype2/freetype
+        sudo ln -s /usr/include/freetype2/freetype.h /usr/include/freetype2/freetype/freetype.h
+        #sudo ln -s /usr/include/freetype2 /usr/include/freetype2/freetype
+
+        echo ">>>>>> Link to gmp.h"
+        sudo sudo ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
+
+        # DOWNLOAD PHP
+        # wget -O /var/tmp/php-5.3.29.tar.gz  http://br1.php.net/distributions/php-5.3.29.tar.gz
+        echo ">>>>>> Download PHP $PHP_VERSION"
+        wget -O /var/tmp/php-${PHP_VERSION}.29.tar.gz  http://br1.php.net/distributions/php-${PHP_VERSION}.29.tar.gz
+
+        # Extract PHP sources
+        echo ">>>>>> Extract sources of PHP $PHP_VERSION"
+        sudo mkdir -p /opt/build
+        sudo tar -zxvf /var/tmp/php-${PHP_VERSION}.29.tar.gz -C /opt/build
+        cd /opt/build/php-${PHP_VERSION}.29
+
+        echo ">>>>>> Configuring PHP $PHP_VERSION"
+        sudo ./configure
+
+
+        # Install PHP
+        echo ">>>>>> Making PHP $PHP_VERSION"
+        sudo make
+
+        #sudo make test
+        echo ">>>>>> Installing PHP $PHP_VERSION"
+        sudo make -i install
+
+        echo ">>>>>> Go to ~"
+        cd ~
+
+        # Create an php-cli
+        echo ">>>>>> Copy of php.ini-development to /usr/local/lib/php.ini"
+        sudo cp /opt/build/php-${PHP_VERSION}.29/php.ini-development /usr/local/lib/php.ini
+
+#        echo ">>>>>> Installing PHP-FPM"
+#        sudo apt-get -y install php5-fpm
+
+
+    else
+        # Install default versions to repositori from ondrej
+        sudo apt-get install -qq php5-cli php5-fpm php5-mysql php5-pgsql php5-sqlite php5-curl php5-gd php5-gmp php5-mcrypt php5-memcached php5-imagick php5-intl php5-xdebug
+    fi
 
     # Set PHP FPM to listen on TCP instead of Socket
     sudo sed -i "s/listen =.*/listen = 127.0.0.1:9000/" /etc/php5/fpm/pool.d/www.conf
