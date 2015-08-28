@@ -2,9 +2,9 @@
 # vi: set ft=ruby :
 
 # Config Github Settings
-github_username = "fideloper"
+github_username = "LuanComputacao"
 github_repo     = "Vaprobash"
-github_branch   = "1.4.0"
+github_branch   = "php5.3"
 github_url      = "https://raw.githubusercontent.com/#{github_username}/#{github_repo}/#{github_branch}"
 
 # Server Configuration
@@ -30,14 +30,14 @@ server_timezone  = "UTC"
 
 # Database Configuration
 mysql_root_password   = "root"   # We'll assume user "root"
-mysql_version         = "5.3"    # Options: 5.3 | 5.5 | 5.6
+mysql_version         = "5.5"    # Options: 5.5 | 5.6
 mysql_enable_remote   = "false"  # remote access enabled when true
 pgsql_root_password   = "root"   # We'll assume user "root"
 mongo_enable_remote   = "false"  # remote access enabled when true
 
 # Languages and Packages
 php_timezone          = "UTC"    # http://php.net/manual/en/timezones.php
-php_version           = "5.6"    # Options: 5.5 | 5.6
+php_version           = "5.3"    # Options: 5.3 | 5.5 | 5.6
 ruby_version          = "latest" # Choose what ruby version should be installed (will also be the default version)
 ruby_gems             = [        # List any Ruby Gems that you want to install
   #"jekyll",
@@ -195,7 +195,7 @@ Vagrant.configure("2") do |config|
   ##########
 
   # Provision Apache Base
-  # config.vm.provision "shell", path: "#{github_url}/scripts/apache.sh", args: [server_ip, public_folder, hostname, github_url]
+   config.vm.provision "shell", path: "#{github_url}/scripts/apache.sh", args: [server_ip, public_folder, hostname, github_url]
 
   # Provision Nginx Base
   # config.vm.provision "shell", path: "#{github_url}/scripts/nginx.sh", args: [server_ip, public_folder, hostname, github_url]
