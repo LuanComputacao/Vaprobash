@@ -39,7 +39,7 @@ $ curl -L http://bit.ly/VaprobashPHP53 > Vagrantfile
 # wget
 $ wget -O Vagrantfile http://bit.ly/vaprobash
 
-# wget
+# wget to php5.3
 $ wget -O Vagrantfile http://bit.ly/VaprobashPHP53
 ```
 
