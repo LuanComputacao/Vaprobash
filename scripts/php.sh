@@ -72,33 +72,52 @@ else
 
         echo ">>>>>> Configuring PHP $PHP_VERSION"
         sudo ./configure \
-                            --with-apxs2=/usr/bin/apxs2 \
-                            --with-curl \
-                            --with-gd \
-                            --with-mcrypt \
-                            --with-mhash \
-                            --with-mysql \
-                            --with-pdo-mysql \
-                            --with-snmp \
-                            --enable-soap \
-                            --with-openssl \
-                            --with-xsl \
-                            --with-config-file-path=/etc/php5 \
-                            --enable-bcmath \
-                            --with-zlib \
-                            --enable-sysvsem \
-                            --with-gd \
-                            --with-jpeg-dir=/usr/lib \
-                            --with-png-dir=/usr/lib \
-                            --with-readline \
-                            --enable-mbstring \
-                            --enable-intl \
-                            --prefix=/opt/php-5.3.10
-
+                --prefix=/opt/php-5.3.22 \
+                --with-pdo-pgsql \
+                --with-zlib-dir \
+                --with-freetype-dir \
+                --enable-mbstring \
+                --with-libxml-dir=/usr \
+                --enable-soap \
+                --enable-calendar \
+                --with-curl \
+                --with-mcrypt \
+                --with-zlib \
+                --with-gd \
+                --with-pgsql \
+                --disable-rpath \
+                --enable-inline-optimization \
+                --with-bz2 \
+                --with-zlib \
+                --enable-sockets \
+                --enable-sysvsem \
+                --enable-sysvshm \
+                --enable-pcntl \
+                --enable-mbregex \
+                --with-mhash \
+                --enable-zip \
+                --with-pcre-regex \
+                --with-mysql \
+                --with-pdo-mysql \
+                --with-mysqli \
+                --with-jpeg-dir=/usr \
+                --with-png-dir=/usr \
+                --enable-gd-native-ttf \
+                --with-openssl \
+                --with-fpm-user=www-data \
+                --with-fpm-group=www-data \
+                --with-libdir=/lib/x86_64-linux-gnu \
+                --enable-ftp \
+                --with-imap \
+                --with-imap-ssl \
+                --with-kerberos \
+                --with-gettext \
+                --enable-fpm
 
         # Install PHP
         echo ">>>>>> Making PHP $PHP_VERSION"
         sudo make
+        sudo make test
 
         #sudo make test
         echo ">>>>>> Installing PHP $PHP_VERSION"
