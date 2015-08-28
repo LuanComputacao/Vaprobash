@@ -71,7 +71,29 @@ else
         cd /opt/build/php-${PHP_VERSION}.29
 
         echo ">>>>>> Configuring PHP $PHP_VERSION"
-        sudo ./configure
+        sudo ./configure \
+                            --with-apxs2=/usr/bin/apxs2 \
+                            --with-curl \
+                            --with-gd \
+                            --with-mcrypt \
+                            --with-mhash \
+                            --with-mysql \
+                            --with-pdo-mysql \
+                            --with-snmp \
+                            --enable-soap \
+                            --with-openssl \
+                            --with-xsl \
+                            --with-config-file-path=/etc/php5 \
+                            --enable-bcmath \
+                            --with-zlib \
+                            --enable-sysvsem \
+                            --with-gd \
+                            --with-jpeg-dir=/usr/lib \
+                            --with-png-dir=/usr/lib \
+                            --with-readline \
+                            --enable-mbstring \
+                            --enable-intl \
+                            --prefix=/opt/php-5.3.10
 
 
         # Install PHP
