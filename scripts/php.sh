@@ -117,7 +117,7 @@ else
         # Install PHP
         echo ">>>>>> Making PHP $PHP_VERSION"
         sudo make
-        sudo make test
+        #sudo make test
 
         #sudo make test
         echo ">>>>>> Installing PHP $PHP_VERSION"
