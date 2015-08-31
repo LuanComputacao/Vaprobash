@@ -130,8 +130,18 @@ else
         echo ">>>>>> Copy of php.ini-development to /usr/local/lib/php.ini"
         sudo cp /opt/build/php-${PHP_VERSION}.29/php.ini-development /usr/local/lib/php.ini
 
-        echo ">>>>>> Installing PHP-FPM"
-        sudo apt-get -y install php5-fpm
+        echo ">>>>>> Copy init.d/php-fpm"
+        sudo cp /opt/build/php-${PHP_VERSION}.29/sapi/fpm/init.d.php-fpm.in /etc/init.d/php-fpm
+        echo ">>>>>> Adding setting permission to execute php-fpm"
+        sudo chmod a+x /etc/init.d/php-fpm
+
+        echo ">>>>>> Copy php-fpm conf"
+        sudo cp /opt/build/php-${PHP_VERSION}.29/sapi/fpm/php-fpm.conf.in /usr/local/etc/php-fpm.conf
+        echo ">>>>>> Adding system startup for /etc/init.d/php-fpm"
+        sudo update-rc.d php-fpm defaults
+
+        #echo ">>>>>> Installing PHP-FPM"
+        #sudo apt-get -y install php5-fpm
 
 
     else
